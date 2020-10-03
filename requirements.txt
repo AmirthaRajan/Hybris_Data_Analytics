@@ -1,0 +1,62 @@
+astroid==2.4.2
+backcall==0.2.0
+Brotli==1.0.9
+certifi==2020.6.20
+click==7.1.2
+colorama==0.4.3
+cycler==0.10.0
+dash==1.16.2
+dash-bootstrap-components==0.10.6
+dash-core-components==1.12.1
+dash-html-components==1.1.1
+dash-renderer==1.8.2
+dash-table==4.10.1
+decorator==4.4.2
+Flask==1.1.2
+Flask-Compress==1.5.0
+Flask-Cors==3.0.9
+Flask-SQLAlchemy==2.4.4
+future==0.18.2
+ipykernel @ file:///C:/ci/ipykernel_1596190155316/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///C:/ci/ipython_1598865816163/work
+ipython-genutils==0.2.0
+isort==5.5.3
+itsdangerous==1.1.0
+jedi @ file:///C:/ci/jedi_1598353661586/work
+Jinja2==2.11.2
+jproperties==2.1.0
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-core==4.6.3
+kiwisolver==1.2.0
+lazy-object-proxy==1.4.3
+MarkupSafe==1.1.1
+matplotlib==3.3.2
+mccabe==0.6.1
+mysql-connector-python==8.0.21
+numpy==1.19.2
+pandas==1.1.2
+parso==0.7.0
+pickleshare==0.7.5
+Pillow==7.2.0
+plotly==4.11.0
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1598885458782/work
+protobuf==3.13.0
+psutil==5.7.2
+Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+pylint==2.6.0
+pyparsing==2.4.7
+python-dateutil==2.8.1
+pytz==2020.1
+pywin32==227
+pyzmq==19.0.2
+retrying==1.3.3
+six==1.15.0
+SQLAlchemy==1.3.19
+toml==0.10.1
+tornado==6.0.4
+traitlets @ file:///tmp/build/80754af9/traitlets_1600712679583/work
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+Werkzeug==1.0.1
+wincertstore==0.2
+wrapt==1.12.1
+xlrd==1.2.0

@@ -1,0 +1,27 @@
+.form-group
+{
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+}
+.form-bottom
+{
+    margin-top: 1rem;
+}
+div.tooltip.fade.show
+{
+    opacity: 0.7;
+    top: -174px;
+    left: 7.125px;
+    display: block;
+    width: 45%;
+}
+.tooltip-inner
+{
+    max-width: unset;
+    text-align: inherit;
+    padding: 1em;
+}
+.table thead th 
+{
+    text-align: center;
+}

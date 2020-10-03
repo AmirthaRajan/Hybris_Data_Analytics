@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Hybris Validator</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.2.0/css/bootstrap-combobox.min.css" integrity="sha512-vZg32TL1vRZ0nxq19/aHEVTkR0GCA2gMmuCuy11aCK6qOFQydR9z49Zs47pHOjdIPubDMaIvVgG7uu8S99yiDg==" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.2.0/js/bootstrap-combobox.min.js" integrity="sha512-RyKWY2OYM5/iYXJnrBl4VVI33lpfrp5OgupcP0/N4jKwkCAYYnSqr6HuljyyrfLvVW9c/B6+EmzdP86JO7ATMg==" crossorigin="anonymous"></script>
+        <link href="{{url_for('static',filename='css/style.css')}}" rel='stylesheet' />
+    </head>
+    <body>
+        <header>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 class="display-4">SAP Hybris Validator</h1>
+                    <p class="lead">A tool provided by capgemini for hybris performance improvement</p>
+                    <hr class="my-4">
+                    <p>Welcome to hybris validator tool. This will validate your properties and configuration for better performance and memory management.</p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="#" role="button"><i class="fas fa-external-link-alt"></i>&nbsp;&nbsp;Contact Us</a>
+                    </p>
+                </div>
+            </div>
+        </header>
+        <form id="validate">
+            <div class="container">
+                <div class="form-row">
+                    <div class="form-group col-sm-6 row" style="padding-top: 1em;">
+                        <label class="col-sm-4 col-form-label" for="hybris_version">SAP Hybris Version</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="hybris_version" maxlength="2" >
+                            <small id="instance" class="form-text text-muted">Enter the Major Version (5, 6, 18, ...) </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 row border-left mb-2" style="padding-top: 1em;">
+                        <label class="col-sm-4 col-form-label" for="instance" >Environment Type
+                            <a href="javascript:void(0)" class="acc-link-icons mr-l5" data-html="true" data-toggle="tooltip" 
+                            rel='tooltip' data-original-title=" <u><b>Dev</b></u>: Development server - validation will provide suggestion for dev environment recommended configuration based on the current server capacity<br>
+                                                <u><b>QA</b></u>: QA server - validation will provide suggestion for QA environment recommended configuration for higher load settings based on the current server capacity<br>
+                                                <u><b>Staged</b></u>: Staging server - validation will provide suggestion for Stag environment with recommended configuration<br>
+                                                <u><b>Prod</b></u>: Production server - validation will provide suggestion for Prod environment with recommended configuration<br>
+                                                <b>The settings suggested might vary for applications**</b>">
+                                    <i class="fa fa-info-circle"></i>
+                                </a>
+                        </label>
+                        <div class="col-sm-7">
+                            <select name="instance" class="combobox form-control" required>
+                                <option [disabled]></option>
+                                <option value="DEV">Development</option>
+                                <option value="QA">QA/UAT</option>
+                                <option value="STAGE">Staging</option>
+                                <option value="PROD">Production</option>
+                            </select>                            
+                            <small id="instance" class="form-text text-muted">Choose Environment</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row" style="text-align: right;">
+                    <div class="form-group col-sm-10 row">
+                        <label class="col-sm-3 col-form-label" for="config_folder_path">Config Folder Path</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="config_folder_path" aria-describedby="config_folder_path">
+                            <small id="config_folder_path" class="form-text text-muted">Absolute path to config folder.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row justify-content-center align-items-center form-bottom">
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Validate Package</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="response_table container">
+        </div>
+        <div class="text-center myOrder"> 
+            
+        </div>
+    </body>
+</html>
+<script>
+    $(document).ready(function()
+    {
+        $('.combobox').combobox();
+        $("[rel=tooltip]").tooltip({html:true});
+        $('#validate').on('submit',function(e)
+        {
+            $('#order').attr('disabled',false)
+            var validationForm = $('#validate').serializeArray();
+            var validationFormObject = {};
+            $.each(validationForm,
+                function(i, v) {
+                    validationFormObject[v.name] = v.value;
+                });
+            $.ajax({
+                url:'/validate',
+                data: JSON.stringify(validationFormObject),
+                method:'POST',
+                dataType:'json',
+                success : function(response){
+                    console.log(response)
+                    $(".response_table").html(response.body);
+                    $(".myOrder").html("<h3>Total Order Amount by Months</h3><br><iframe src='/getOrder/' width='1000' height='500'>");
+                },
+                error : function(error){
+                    console.log(error)
+                }
+            })
+            return false;
+        });
+    })    
+</script>
