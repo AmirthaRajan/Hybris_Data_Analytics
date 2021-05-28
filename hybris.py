@@ -18,6 +18,7 @@ from distutils import util
 import mysql.connector
 import calendar
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.debug import DebuggedApplication
 
 server = Flask(__name__)
 CORS(server)
@@ -26,6 +27,7 @@ property_result = []
 header_operators = [">=","range","<="]
 conn = None
 
+server.wsgi_app = DebuggedApplication(server.wsgi_app, True)
 app = dash.Dash(__name__,server=server,url_base_pathname='/getOrder/',external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -75,6 +77,7 @@ def connectDB():
             print("Database does not exist")
         else:
             print(err)
+        pass
 
 
 
@@ -92,13 +95,13 @@ def validate_column(operator,expected_value,current_value):
     if current_value == None:
         return False
     if operator in header_operators:
-        if operator == ">=":
-            return float(expected_value) >= float(current_value)
+        if operator != "range":
+            return eval("float(expected_value) "+operator+" float(current_value)")
         elif operator == "range":
             value_range = expected_value.split(';')
             return float(value_range[0]) <= float(current_value) <= float(value_range[1])
-        elif operator == "<=":
-            return float(expected_value) <= float(current_value)
+        # elif operator == "<=":
+        #     return float(expected_value) <= float(current_value)
     else:
         if isinstance(expected_value,bool) or (current_value.lower() in ['true','false','yes','no']):
             return bool(util.strtobool(str(current_value).lower())) == bool(util.strtobool(str(expected_value).lower()))
@@ -129,6 +132,7 @@ def validate_properties(req):
     local_config = df_local_prop[(df_local_prop['Instance'] == req['instance']) & (df_local_prop['Hybris_Version'] == int(req['hybris_version']))]
     tomcat_config = df_tomcat_prop[df_tomcat_prop['Index'].values == local_config['Index'].values]
     tomcat_value = local_properties.get('tomcat.generaloptions').data.split(" -")
+    print(tomcat_value)
     for col in local_config.columns:
         headers = col.split('|')
         header = str(headers[0] if len(headers) == 1 else headers[1])
